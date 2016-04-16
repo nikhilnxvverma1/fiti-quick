@@ -9,7 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+- (IBAction)upSwipe:(id)sender;
+- (IBAction)downSwipe:(id)sender;
+- (IBAction)rightSwipe:(id)sender;
+- (IBAction)leftSwipe:(id)sender;
 
+
+
+@property (weak, nonatomic) IBOutlet UILabel *digitalClock;
 
 @end
 
