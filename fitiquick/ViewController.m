@@ -10,12 +10,15 @@
 #import "Util.h"
 
 
+
 @interface ViewController ()
 @property BOOL readyForAnimation;
+@property int level;
 @end
 
 @implementation ViewController
 @synthesize readyForAnimation;
+@synthesize level;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,6 +26,7 @@
     [self makeViews];
     [self updateTime];
     readyForAnimation=YES;
+    level=0;
     
 }
 
@@ -30,6 +34,18 @@
     CGRect frameSize=[[UIScreen mainScreen] bounds];
     float h=frameSize.size.height;
     float w=frameSize.size.width;
+    
+    //calendar
+    _calendarContentView=[[JTHorizontalCalendarView alloc] initWithFrame:CGRectMake(0, h/10-h, w, h/3)];
+    [self.view addSubview:_calendarContentView];
+    _calendarMenuView=[[JTCalendarMenuView alloc] initWithFrame:CGRectMake(0, 0-h, w, h/10)];
+    [self.view addSubview:_calendarMenuView];
+    _calendarManager = [JTCalendarManager new];
+    _calendarManager.delegate = self;
+    
+    [_calendarManager setMenuView:_calendarMenuView];
+    [_calendarManager setContentView:_calendarContentView];
+    [_calendarManager setDate:[NSDate date]];
     
     //digital clock
     _digitalClock=[[UILabel alloc] initWithFrame:CGRectMake(0, h/2, w, 30)];
@@ -72,6 +88,8 @@
     _exercise.textAlignment=NSTextAlignmentCenter;
     _exercise.textColor=[Util r:85 g:149 b:105];
     [self.view addSubview:_exercise];
+    
+    
 
 }
 
@@ -121,12 +139,18 @@
 
 - (IBAction)upSwipe:(id)sender {
     NSLog(@"Swiped up");
-    if(readyForAnimation){
+    if(readyForAnimation&&level<3){
         readyForAnimation=NO;
         
         //move primary things up first
         CGRect frameSize=[[UIScreen mainScreen] bounds];
         float h=frameSize.size.height;
+
+        CGPoint calContentPt=self.calendarContentView.center;
+        calContentPt.y-=h;
+        
+        CGPoint calMenuPt=self.calendarMenuView.center;
+        calMenuPt.y-=h;
         
         CGPoint digitalClockPoint=self.digitalClock.center;
         digitalClockPoint.y-=h;
@@ -144,6 +168,8 @@
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
+             self.calendarContentView.center=calContentPt;
+             self.calendarMenuView.center=calMenuPt;
              self.digitalClock.center=digitalClockPoint;
              self.reps.center=repsPoint;
              self.weights.center=weightsPoint;
@@ -171,13 +197,14 @@
                          }
                          completion:^(BOOL finished){
                              readyForAnimation=YES;
+                             level++;
                          }];
     }
 }
 
 - (IBAction)downSwipe:(id)sender {
     NSLog(@"Swiped down");
-    if(readyForAnimation){
+    if(readyForAnimation&&level>=0){
         readyForAnimation=NO;
         CGRect frameSize=[[UIScreen mainScreen] bounds];
         float h=frameSize.size.height;
@@ -202,7 +229,13 @@
                          }];
         
         
-        //move primary items after a delay
+        //move primary items down after a delay
+        CGPoint calContentPt=self.calendarContentView.center;
+        calContentPt.y+=h;
+        
+        CGPoint calMenuPt=self.calendarMenuView.center;
+        calMenuPt.y+=h;
+        
         CGPoint digitalClockPoint=self.digitalClock.center;
         digitalClockPoint.y+=h;
         
@@ -219,6 +252,8 @@
                               delay:0.2
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
+                             self.calendarContentView.center=calContentPt;
+                             self.calendarMenuView.center=calMenuPt;
                              self.digitalClock.center=digitalClockPoint;
                              self.reps.center=repsPoint;
                              self.weights.center=weightsPoint;
@@ -226,6 +261,7 @@
                          }
                          completion:^(BOOL finished){
                              readyForAnimation=YES;
+                             level--;
                          }];
         
         

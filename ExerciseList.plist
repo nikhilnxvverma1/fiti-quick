@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Bicep Curls</key>
+	<string></string>
+	<key>Flat Bench Press</key>
+	<string></string>
+	<key>Deadlift</key>
+	<string></string>
+	<key>Shoulder Press</key>
+	<string></string>
+	<key>Hammer Curls</key>
+	<string></string>
+	<key>Shoulder Raises</key>
+	<string></string>
+	<key>Tricep Extension</key>
+	<string></string>
+	<key>Concentration Curls</key>
+	<string></string>
+	<key>Incline Bench Press</key>
+	<string></string>
+	<key>Decline Bench Press</key>
+	<string></string>
+	<key>Rowing</key>
+	<string></string>
+	<key>Chest Flying</key>
+	<string></string>
+	<key>Calf Raises</key>
+	<string></string>
+	<key>Squats</key>
+	<string></string>
+	<key>Lunges</key>
+	<string></string>
+	<key>Hamstring Extension</key>
+	<string></string>
+	<key>Quad Press</key>
+	<string></string>
+	<key>Shrugs</key>
+	<string></string>
+	<key>Forearm Roll</key>
+	<string></string>
+	<key>Lying Extensions</key>
+	<string></string>
+	<key>Rope Pull</key>
+	<string></string>
+	<key>Farmers Walk</key>
+	<string></string>
+	<key>Seated Curl</key>
+	<string></string>
+</dict>
+</plist>
