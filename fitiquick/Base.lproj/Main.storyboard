@@ -16,20 +16,8 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vx-yN-Sb1">
-                                <rect key="frame" x="225" y="282" width="150" height="36"/>
-                                <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="35"/>
-                                <color key="textColor" red="0.33333333333333331" green="0.58039215686274503" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.23921568627450979" green="0.27450980392156865" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="6vx-yN-Sb1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="BPc-yq-JuG"/>
-                            <constraint firstItem="6vx-yN-Sb1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IMk-hu-Yve"/>
-                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="nzw-VM-mu9" appends="YES" id="SS7-S7-Qng"/>
                             <outletCollection property="gestureRecognizers" destination="bgg-f3-dNv" appends="YES" id="xtI-Oa-Iz6"/>
@@ -37,9 +25,6 @@
                             <outletCollection property="gestureRecognizers" destination="nlO-SC-Tzk" appends="YES" id="SdY-g9-oUK"/>
                         </connections>
                     </view>
-                    <connections>
-                        <outlet property="digitalClock" destination="6vx-yN-Sb1" id="A8q-Uk-G5e"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="up" id="bgg-f3-dNv">

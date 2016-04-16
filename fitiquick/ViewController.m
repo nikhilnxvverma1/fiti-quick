@@ -7,23 +7,99 @@
 //
 
 #import "ViewController.h"
+#import "Util.h"
+
 
 @interface ViewController ()
-
+@property BOOL readyForAnimation;
 @end
 
 @implementation ViewController
+@synthesize readyForAnimation;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [self makeViews];
     [self updateTime];
+    readyForAnimation=YES;
     
+}
+
+-(void)makeViews{
+    CGRect frameSize=[[UIScreen mainScreen] bounds];
+    float h=frameSize.size.height;
+    float w=frameSize.size.width;
+    
+    //digital clock
+    _digitalClock=[[UILabel alloc] initWithFrame:CGRectMake(0, h/2, w, 30)];
+    _digitalClock.textAlignment=NSTextAlignmentCenter;
+    _digitalClock.textColor=[Util r:85 g:149 b:105];
+    [self.view addSubview:_digitalClock];
+    
+    //reps
+    _reps=[[UILabel alloc] initWithFrame:CGRectMake(0, h/6+h, w, 30)];
+    _reps.text=@"Reps";
+    _reps.textAlignment=NSTextAlignmentCenter;
+    _reps.textColor=[Util r:85 g:149 b:105];
+    [self.view addSubview:_reps];
+    
+    //rep value
+    _repValue=[[AKPickerView alloc] initWithFrame:CGRectMake(0, h/4+h, w, 3*h/4)];
+    _repValue.delegate=self;
+    _repValue.dataSource=self;
+    _repValue.interitemSpacing=20;
+    [self.view addSubview:_repValue];
+    [_repValue reloadData];
+    
+    //weight
+    _weights=[[UILabel alloc] initWithFrame:CGRectMake(0, h/6+2*h, w, 30)];
+    _weights.text=@"Weight";
+    _weights.textAlignment=NSTextAlignmentCenter;
+    _weights.textColor=[Util r:85 g:149 b:105];
+    [self.view addSubview:_weights];
+    
+    _weightValue=[[AKPickerView alloc] initWithFrame:CGRectMake(0, h/4+2*h, w, 3*h/4)];
+    _weightValue.delegate=self;
+    _weightValue.dataSource=self;
+    _weightValue.interitemSpacing=20;
+    [self.view addSubview:_weightValue];
+    [_weightValue reloadData];
+    
+    //exercise
+    _exercise=[[UILabel alloc] initWithFrame:CGRectMake(0, h/6+3*h, w, 30)];
+    _exercise.text=@"Exercise";
+    _exercise.textAlignment=NSTextAlignmentCenter;
+    _exercise.textColor=[Util r:85 g:149 b:105];
+    [self.view addSubview:_exercise];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView{
+    if(pickerView==_repValue){
+        return 30;
+    }else if(pickerView==_weightValue){
+        return 30;
+    }
+    return 10;
+}
+
+- (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item{
+    if(pickerView==_repValue){
+        return [NSString stringWithFormat:@"%d",item+1];
+    }else if(pickerView==_weightValue){
+        return [NSString stringWithFormat:@"%d",item*5];
+    }
+    return @"!";
+}
+
+- (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item{
+    NSLog(@"selected %d",item);
 }
 
 -(void)updateTime{
@@ -34,9 +110,6 @@
     [self performSelector:@selector(updateTime) withObject:self afterDelay:1.0];
 }
 
-- (IBAction)downSwipe:(id)sender {
-    NSLog(@"Swiped down");
-}
 
 - (IBAction)rightSwipe:(id)sender {
     NSLog(@"Swiped right");
@@ -48,5 +121,119 @@
 
 - (IBAction)upSwipe:(id)sender {
     NSLog(@"Swiped up");
+    if(readyForAnimation){
+        readyForAnimation=NO;
+        
+        //move primary things up first
+        CGRect frameSize=[[UIScreen mainScreen] bounds];
+        float h=frameSize.size.height;
+        
+        CGPoint digitalClockPoint=self.digitalClock.center;
+        digitalClockPoint.y-=h;
+        
+        CGPoint repsPoint=self.reps.center;
+        repsPoint.y-=h;
+        
+        CGPoint weightsPoint=self.weights.center;
+        weightsPoint.y-=h;
+        
+        CGPoint exercisePoint=self.exercise.center;
+        exercisePoint.y-=h;
+
+        [UIView animateWithDuration:0.5
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+             self.digitalClock.center=digitalClockPoint;
+             self.reps.center=repsPoint;
+             self.weights.center=weightsPoint;
+             self.exercise.center=exercisePoint;
+        }
+                         completion:^(BOOL finished){
+            readyForAnimation=YES;
+        }];
+        
+        //move secondary things up after a delay
+
+        CGPoint repVPoint=self.repValue.center;
+        repVPoint.y-=h;
+        
+        CGPoint weightVPoint=self.weightValue.center;
+        weightVPoint.y-=h;
+        
+        [UIView animateWithDuration:0.5
+                              delay:0.2
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.repValue.center=repVPoint;
+                             self.weightValue.center=weightVPoint;
+
+                         }
+                         completion:^(BOOL finished){
+                             readyForAnimation=YES;
+                         }];
+    }
 }
+
+- (IBAction)downSwipe:(id)sender {
+    NSLog(@"Swiped down");
+    if(readyForAnimation){
+        readyForAnimation=NO;
+        CGRect frameSize=[[UIScreen mainScreen] bounds];
+        float h=frameSize.size.height;
+        
+        //move secondary things down first
+        CGPoint repVPoint=self.repValue.center;
+        repVPoint.y+=h;
+        
+        CGPoint weightVPoint=self.weightValue.center;
+        weightVPoint.y+=h;
+        
+        [UIView animateWithDuration:0.5
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.repValue.center=repVPoint;
+                             self.weightValue.center=weightVPoint;
+                             
+                         }
+                         completion:^(BOOL finished){
+                             readyForAnimation=YES;
+                         }];
+        
+        
+        //move primary items after a delay
+        CGPoint digitalClockPoint=self.digitalClock.center;
+        digitalClockPoint.y+=h;
+        
+        CGPoint repsPoint=self.reps.center;
+        repsPoint.y+=h;
+        
+        CGPoint weightsPoint=self.weights.center;
+        weightsPoint.y+=h;
+        
+        CGPoint exercisePoint=self.exercise.center;
+        exercisePoint.y+=h;
+        
+        [UIView animateWithDuration:0.5
+                              delay:0.2
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.digitalClock.center=digitalClockPoint;
+                             self.reps.center=repsPoint;
+                             self.weights.center=weightsPoint;
+                             self.exercise.center=exercisePoint;
+                         }
+                         completion:^(BOOL finished){
+                             readyForAnimation=YES;
+                         }];
+        
+        
+    }
+    
+    
+    
+}
+
+
 @end

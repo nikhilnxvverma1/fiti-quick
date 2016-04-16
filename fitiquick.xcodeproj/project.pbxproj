@@ -24,6 +24,8 @@
 		C442990E1CC2C89E00473354 /* Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299041CC2C89E00473354 /* Workout.m */; };
 		C442990F1CC2C89E00473354 /* Exercise+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299061CC2C89E00473354 /* Exercise+CoreDataProperties.m */; };
 		C44299101CC2C89E00473354 /* Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299081CC2C89E00473354 /* Exercise.m */; };
+		C44299161CC2D84A00473354 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299151CC2D84A00473354 /* Util.m */; };
+		C442991A1CC2EB1900473354 /* AKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299191CC2EB1900473354 /* AKPickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,10 @@
 		C44299061CC2C89E00473354 /* Exercise+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Exercise+CoreDataProperties.m"; sourceTree = "<group>"; };
 		C44299071CC2C89E00473354 /* Exercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exercise.h; sourceTree = "<group>"; };
 		C44299081CC2C89E00473354 /* Exercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Exercise.m; sourceTree = "<group>"; };
+		C44299141CC2D84A00473354 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		C44299151CC2D84A00473354 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		C44299181CC2EB1900473354 /* AKPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKPickerView.h; sourceTree = "<group>"; };
+		C44299191CC2EB1900473354 /* AKPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKPickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,9 +133,12 @@
 		C4395E4B1CC2A354003BE00A /* fitiquick */ = {
 			isa = PBXGroup;
 			children = (
+				C44299171CC2EAF400473354 /* 3rd Party */,
 				C44298F81CC2C87E00473354 /* model */,
 				C4395E4F1CC2A354003BE00A /* AppDelegate.h */,
 				C4395E501CC2A354003BE00A /* AppDelegate.m */,
+				C44299141CC2D84A00473354 /* Util.h */,
+				C44299151CC2D84A00473354 /* Util.m */,
 				C4395E521CC2A354003BE00A /* ViewController.h */,
 				C4395E531CC2A354003BE00A /* ViewController.m */,
 				C4395E551CC2A354003BE00A /* Main.storyboard */,
@@ -189,6 +198,15 @@
 				C44299081CC2C89E00473354 /* Exercise.m */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		C44299171CC2EAF400473354 /* 3rd Party */ = {
+			isa = PBXGroup;
+			children = (
+				C44299181CC2EB1900473354 /* AKPickerView.h */,
+				C44299191CC2EB1900473354 /* AKPickerView.m */,
+			);
+			name = "3rd Party";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +339,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C442991A1CC2EB1900473354 /* AKPickerView.m in Sources */,
+				C44299161CC2D84A00473354 /* Util.m in Sources */,
 				C442990B1CC2C89E00473354 /* Set+CoreDataProperties.m in Sources */,
 				C44299101CC2C89E00473354 /* Exercise.m in Sources */,
 				C442990D1CC2C89E00473354 /* Workout+CoreDataProperties.m in Sources */,
