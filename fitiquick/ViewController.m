@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "Exercise.h"
 #import "ExerciseCircle.h"
+#import "WorkoutCard.h"
 
 
 @interface ViewController ()
@@ -49,6 +50,12 @@
     [_calendarManager setMenuView:_calendarMenuView];
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:[NSDate date]];
+    
+    self.goDown=[[UIButton alloc] initWithFrame:CGRectMake(w/2-w/10, -h/10, w/5, h/10)];
+    [self.goDown setTitle:@"Down" forState:UIControlStateNormal];
+    [self.goDown addTarget:self action:@selector(moveItemsUp) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.goDown];
+    
     
     //digital clock
     _digitalClock=[[UILabel alloc] initWithFrame:CGRectMake(0, h/2, w, 30)];
@@ -92,11 +99,11 @@
     _exercise.textColor=[Util r:85 g:149 b:105];
     [self.view addSubview:_exercise];
     
-    [self populateExercises];
+    [self initExercises];
 
 }
 
--(void)populateExercises{
+-(void)initExercises{
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -115,7 +122,18 @@
         Exercise *first=[result objectAtIndex:1];
         NSLog(@"Exercise : %@, %@",first.name,first.bodypart);
         ExerciseCircle *exerciseView=[[ExerciseCircle alloc] initWithFrame:CGRectMake(40, 300, 100, 100) exercise:first];
-        [self.view addSubview:exerciseView];
+//        [self.view addSubview:exerciseView];
+        
+        WorkoutCard *workoutCard=[[WorkoutCard alloc] initWithFrame:CGRectMake(25, 200, 275, 150) workout:nil];
+//        [self.view addSubview:workoutCard];
+        
+        CGRect frameSize=[[UIScreen mainScreen] bounds];
+        float h=frameSize.size.height;
+        float w=frameSize.size.width;
+        
+//        UICollectionView *exerciesCollection=[[UICollectionView alloc]  initWithFrame:CGRectMake(0, h/2+3*h, w, h/2)];
+//        exerciesCollection.delegate=self;
+//        exerciesCollection.dataSource=self;
     }
     
 }
@@ -182,6 +200,9 @@
             CGPoint calMenuPt=self.calendarMenuView.center;
             calMenuPt.y-=h;
             
+            CGPoint goDownPt=self.goDown.center;
+            goDownPt.y-=h;
+            
             CGPoint digitalClockPoint=self.digitalClock.center;
             digitalClockPoint.y-=h;
             
@@ -200,6 +221,7 @@
                              animations:^{
                                  self.calendarContentView.center=calContentPt;
                                  self.calendarMenuView.center=calMenuPt;
+                                 self.goDown.center=goDownPt;
                                  self.digitalClock.center=digitalClockPoint;
                                  self.reps.center=repsPoint;
                                  self.weights.center=weightsPoint;
@@ -234,6 +256,7 @@
             //reset everything back to where it was
             self.calendarContentView.frame=CGRectMake(0, h/10-h, w, h/3);
             self.calendarMenuView.frame=CGRectMake(0, 0-h, w, h/10);
+            self.goDown.frame=CGRectMake(w/2-w/10, -h/10, w/5, h/10);
             self.digitalClock.center=CGPointMake(self.digitalClock.center.x,h/2);
             self.reps.center=CGPointMake(self.reps.center.x,h/6+h);
             self.repValue.frame=CGRectMake(0,h/4+h,w,3*h/4);
@@ -295,6 +318,10 @@
         CGPoint calMenuPt=self.calendarMenuView.center;
         calMenuPt.y+=h;
         
+        CGPoint goDownPt=self.goDown.center;
+        goDownPt.y+=h;
+        
+        
         CGPoint digitalClockPoint=self.digitalClock.center;
         digitalClockPoint.y+=h;
         
@@ -313,6 +340,7 @@
                          animations:^{
                              self.calendarContentView.center=calContentPt;
                              self.calendarMenuView.center=calMenuPt;
+                             self.goDown.center=goDownPt;
                              self.digitalClock.center=digitalClockPoint;
                              self.reps.center=repsPoint;
                              self.weights.center=weightsPoint;

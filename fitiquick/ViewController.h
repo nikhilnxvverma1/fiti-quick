@@ -10,7 +10,7 @@
 #import "AKPickerView.h"
 #import "JTCalendar/JTCalendar.h"
 
-@interface ViewController : UIViewController<AKPickerViewDataSource,AKPickerViewDelegate,JTCalendarDelegate>
+@interface ViewController : UIViewController<AKPickerViewDataSource,AKPickerViewDelegate,JTCalendarDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 - (IBAction)upSwipe:(id)sender;
 - (IBAction)downSwipe:(id)sender;
 - (IBAction)rightSwipe:(id)sender;
@@ -26,5 +26,6 @@
 @property (strong, nonatomic) JTCalendarMenuView *calendarMenuView;
 @property (strong, nonatomic) JTHorizontalCalendarView *calendarContentView;
 @property (strong, nonatomic) JTCalendarManager *calendarManager;
+@property (strong,nonatomic) UIButton *goDown;
 @end
 
