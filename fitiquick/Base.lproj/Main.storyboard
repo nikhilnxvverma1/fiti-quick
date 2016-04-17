@@ -48,6 +48,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="468" y="274"/>
         </scene>
     </scenes>
 </document>

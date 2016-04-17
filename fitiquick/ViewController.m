@@ -25,6 +25,8 @@
 @property Day *today;
 @property NSDate *dateSelected;
 @property UIFont *headerFont;
+@property UIFont *pickerFont;
+@property UIFont *pickerHighlightedFont;
 @end
 
 @implementation ViewController
@@ -36,15 +38,19 @@
 @synthesize dateSelected;
 @synthesize selectedDay;
 @synthesize headerFont;
+@synthesize pickerFont;
+@synthesize pickerHighlightedFont;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    headerFont=[UIFont fontWithName:@"GillSans" size:60];
+    pickerFont=[UIFont fontWithName:@"GillSans" size:30];
+    pickerHighlightedFont=[UIFont fontWithName:@"GillSans" size:40];
     [self makeViews];
     [self updateTime];
     readyForAnimation=YES;
     level=0;
-    headerFont=[UIFont fontWithName:@"Helvetica" size:60];
 }
 
 -(void)makeViews{
@@ -86,18 +92,19 @@
     
     
     //digital clock
-    _digitalClock=[[UILabel alloc] initWithFrame:CGRectMake(0, h/2, w, 40)];
+    _digitalClock=[[UILabel alloc] initWithFrame:CGRectMake(0, h/2-30, w, 60)];
     _digitalClock.textAlignment=NSTextAlignmentCenter;
     _digitalClock.textColor=[Util r:85 g:149 b:105];
-    _digitalClock.adjustsFontSizeToFitWidth=YES;
+//    _digitalClock.adjustsFontSizeToFitWidth=YES;
     _digitalClock.font=headerFont;
 //    _digitalClock.adjustsFontSizeToFitWidth=NO;
     [self.view addSubview:_digitalClock];
     
     //reps
-    _reps=[[UILabel alloc] initWithFrame:CGRectMake(0, h/6+h, w, 30)];
+    _reps=[[UILabel alloc] initWithFrame:CGRectMake(0, h/6+h-30, w, 60)];
     _reps.text=@"Reps";
     _reps.textAlignment=NSTextAlignmentCenter;
+    _reps.font=headerFont;
     _reps.textColor=[Util r:85 g:149 b:105];
     [self.view addSubview:_reps];
     
@@ -106,14 +113,17 @@
     _repValue.delegate=self;
     _repValue.dataSource=self;
     _repValue.interitemSpacing=20;
+    _repValue.font=pickerFont;
+    _repValue.highlightedFont=pickerHighlightedFont;
     _repValue.textColor=[UIColor whiteColor];
     _repValue.highlightedTextColor=[Util r:85 g:149 b:105];
     [self.view addSubview:_repValue];
     [_repValue reloadData];
     
     //weight
-    _weights=[[UILabel alloc] initWithFrame:CGRectMake(0, h/6+2*h, w, 30)];
+    _weights=[[UILabel alloc] initWithFrame:CGRectMake(0, h/6+2*h-30, w, 60)];
     _weights.text=@"Weight";
+    _weights.font=headerFont;
     _weights.textAlignment=NSTextAlignmentCenter;
     _weights.textColor=[Util r:85 g:149 b:105];
     [self.view addSubview:_weights];
@@ -122,14 +132,17 @@
     _weightValue.delegate=self;
     _weightValue.dataSource=self;
     _weightValue.interitemSpacing=20;
+    _weightValue.font=pickerFont;
+    _weightValue.highlightedFont=pickerHighlightedFont;
     _weightValue.textColor=[UIColor whiteColor];
     _weightValue.highlightedTextColor=[Util r:85 g:149 b:105];
     [self.view addSubview:_weightValue];
     [_weightValue reloadData];
     
     //exercise
-    _exercise=[[UILabel alloc] initWithFrame:CGRectMake(0, h/6+3*h, w, 30)];
+    _exercise=[[UILabel alloc] initWithFrame:CGRectMake(0, h/6+3*h-30, w, 60)];
     _exercise.text=@"Exercise";
+    _exercise.font=headerFont;
     _exercise.textAlignment=NSTextAlignmentCenter;
     _exercise.textColor=[Util r:85 g:149 b:105];
     [self.view addSubview:_exercise];
@@ -522,12 +535,12 @@
             self.calendarContentView.frame=CGRectMake(0, h/10-h, w, h/3);
             self.calendarMenuView.frame=CGRectMake(0, 0-h, w, h/10);
             self.goDown.frame=CGRectMake(w/2-w/10, -h/10, w/5, h/10);
-            self.digitalClock.center=CGPointMake(self.digitalClock.center.x,h/2);
-            self.reps.center=CGPointMake(self.reps.center.x,h/6+h);
+            self.digitalClock.center=CGPointMake(self.digitalClock.center.x,h/2-30);
+            self.reps.center=CGPointMake(self.reps.center.x,h/6+h-30);
             self.repValue.frame=CGRectMake(0,h/4+h,w,3*h/4);
-            self.weights.center=CGPointMake(self.weights.center.x,h/6+2*h);
+            self.weights.center=CGPointMake(self.weights.center.x,h/6+2*h-30);
             self.weightValue.frame=CGRectMake(0,h/4+2*h,w,3*h/4);
-            self.exercise.center=CGPointMake(self.exercise.center.x,h/6+3*h);
+            self.exercise.center=CGPointMake(self.exercise.center.x,h/6+3*h-30);
             self.exerciseCollection.frame=CGRectMake(0, h/2+3*h, w, h/2);
             self.selectedExercise.frame=CGRectMake(w/2-w/8, h/4+3*h, w/4, w/4);
             self.scrollLog.frame=CGRectMake(w/25, 13*h/30-h, w-2*w/25,3*h/7);
