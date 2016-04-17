@@ -30,6 +30,7 @@
 		C44299351CC3076300473354 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = C442992D1CC3076300473354 /* Set.m */; };
 		C442993A1CC31FC000473354 /* ExerciseCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299391CC31FC000473354 /* ExerciseCircle.m */; };
 		C442993D1CC32F1400473354 /* WorkoutCard.m in Sources */ = {isa = PBXBuildFile; fileRef = C442993C1CC32F1400473354 /* WorkoutCard.m */; };
+		C45E11101CC37CC100C63025 /* ExerciseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C45E110F1CC37CC100C63025 /* ExerciseView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,8 @@
 		C44299391CC31FC000473354 /* ExerciseCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseCircle.m; sourceTree = "<group>"; };
 		C442993B1CC32F1400473354 /* WorkoutCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutCard.h; sourceTree = "<group>"; };
 		C442993C1CC32F1400473354 /* WorkoutCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutCard.m; sourceTree = "<group>"; };
+		C45E110E1CC37CC100C63025 /* ExerciseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseView.h; sourceTree = "<group>"; };
+		C45E110F1CC37CC100C63025 /* ExerciseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseView.m; sourceTree = "<group>"; };
 		C7E28DB264111B7A648E2201 /* Pods-fitiquick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitiquick.release.xcconfig"; path = "Pods/Target Support Files/Pods-fitiquick/Pods-fitiquick.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,6 +187,8 @@
 				C44299391CC31FC000473354 /* ExerciseCircle.m */,
 				C442993B1CC32F1400473354 /* WorkoutCard.h */,
 				C442993C1CC32F1400473354 /* WorkoutCard.m */,
+				C45E110E1CC37CC100C63025 /* ExerciseView.h */,
+				C45E110F1CC37CC100C63025 /* ExerciseView.m */,
 			);
 			path = fitiquick;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C442991A1CC2EB1900473354 /* AKPickerView.m in Sources */,
+				C45E11101CC37CC100C63025 /* ExerciseView.m in Sources */,
 				C44299331CC3076300473354 /* Exercise.m in Sources */,
 				C44299351CC3076300473354 /* Set.m in Sources */,
 				C442993A1CC31FC000473354 /* ExerciseCircle.m in Sources */,

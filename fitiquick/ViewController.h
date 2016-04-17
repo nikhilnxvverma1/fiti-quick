@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AKPickerView.h"
 #import "JTCalendar/JTCalendar.h"
+#import "ExerciseView.h"
 
 @interface ViewController : UIViewController<AKPickerViewDataSource,AKPickerViewDelegate,JTCalendarDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 - (IBAction)upSwipe:(id)sender;
@@ -27,5 +28,7 @@
 @property (strong, nonatomic) JTHorizontalCalendarView *calendarContentView;
 @property (strong, nonatomic) JTCalendarManager *calendarManager;
 @property (strong,nonatomic) UIButton *goDown;
+@property (strong, nonatomic) UICollectionView *exerciseCollection;
+@property (strong,nonatomic) ExerciseView *selectedExercise;
 @end
 

@@ -1,15 +1,16 @@
 //
-//  ExerciseCircle.m
+//  ExerciseView.m
 //  fitiquick
 //
-//  Created by Nikhil Verma on 16/04/16.
+//  Created by Nikhil Verma on 17/04/16.
 //  Copyright © 2016 Nikhil Verma. All rights reserved.
 //
 
-#import "ExerciseCircle.h"
+#import "ExerciseView.h"
 #import "Util.h"
 
-@implementation ExerciseCircle
+@implementation ExerciseView
+
 
 -(id)initWithFrame:(CGRect)frame {
     if(self=[super initWithFrame:frame]){
@@ -20,11 +21,11 @@
         [self.layer setCornerRadius:frame.size.width/2];
         [self.layer setBackgroundColor:[Util r:85 g:149 b:105].CGColor];
         
-        // drop shadow (this hinders performance)
-//        [self.layer setShadowColor:[UIColor blackColor].CGColor];
-//        [self.layer setShadowOpacity:0.4];
-//        [self.layer setShadowRadius:frame.size.width/6];
-//        [self.layer setShadowOffset:CGSizeMake(frame.size.width/4, frame.size.width/4 )];
+        // drop shadow
+        [self.layer setShadowColor:[UIColor blackColor].CGColor];
+        [self.layer setShadowOpacity:0.4];
+        [self.layer setShadowRadius:frame.size.width/6];
+        [self.layer setShadowOffset:CGSizeMake(frame.size.width/4, frame.size.width/4 )];
         
     }
     return self;
@@ -41,7 +42,7 @@
     NSArray *array = [_exercise.name componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
-
+    
     float dy=frame.size.height/5;
     //TODO for now we will hardcode the logic right in depending on how
     //many words we have
@@ -67,6 +68,7 @@
     
     
 }
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
