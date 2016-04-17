@@ -8,7 +8,9 @@
 
 #import "ViewController.h"
 #import "Util.h"
-
+#import "AppDelegate.h"
+#import "Exercise.h"
+#import "ExerciseCircle.h"
 
 
 @interface ViewController ()
@@ -90,8 +92,32 @@
     _exercise.textColor=[Util r:85 g:149 b:105];
     [self.view addSubview:_exercise];
     
-    
+    [self populateExercises];
 
+}
+
+-(void)populateExercises{
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Exercise" inManagedObjectContext:delegate.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSError *error = nil;
+    NSArray *result = [delegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if (error) {
+        NSLog(@"Unable to fetch exercises.");
+        NSLog(@"%@, %@", error, error.localizedDescription);
+        
+    } else {
+//        NSLog(@"%@", result);
+        Exercise *first=[result objectAtIndex:1];
+        NSLog(@"Exercise : %@, %@",first.name,first.bodypart);
+        ExerciseCircle *exerciseView=[[ExerciseCircle alloc] initWithFrame:CGRectMake(40, 300, 100, 100) exercise:first];
+        [self.view addSubview:exerciseView];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -28,6 +28,8 @@
 		C44299331CC3076300473354 /* Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299291CC3076300473354 /* Exercise.m */; };
 		C44299341CC3076300473354 /* Set+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C442992B1CC3076300473354 /* Set+CoreDataProperties.m */; };
 		C44299351CC3076300473354 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = C442992D1CC3076300473354 /* Set.m */; };
+		C442993A1CC31FC000473354 /* ExerciseCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299391CC31FC000473354 /* ExerciseCircle.m */; };
+		C442993D1CC32F1400473354 /* WorkoutCard.m in Sources */ = {isa = PBXBuildFile; fileRef = C442993C1CC32F1400473354 /* WorkoutCard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,10 @@
 		C442992B1CC3076300473354 /* Set+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Set+CoreDataProperties.m"; sourceTree = "<group>"; };
 		C442992C1CC3076300473354 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
 		C442992D1CC3076300473354 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
+		C44299381CC31FC000473354 /* ExerciseCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseCircle.h; sourceTree = "<group>"; };
+		C44299391CC31FC000473354 /* ExerciseCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseCircle.m; sourceTree = "<group>"; };
+		C442993B1CC32F1400473354 /* WorkoutCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkoutCard.h; sourceTree = "<group>"; };
+		C442993C1CC32F1400473354 /* WorkoutCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkoutCard.m; sourceTree = "<group>"; };
 		C7E28DB264111B7A648E2201 /* Pods-fitiquick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitiquick.release.xcconfig"; path = "Pods/Target Support Files/Pods-fitiquick/Pods-fitiquick.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +180,10 @@
 				C4395E601CC2A354003BE00A /* Info.plist */,
 				C4395E581CC2A354003BE00A /* fitiquick.xcdatamodeld */,
 				C4395E4C1CC2A354003BE00A /* Supporting Files */,
+				C44299381CC31FC000473354 /* ExerciseCircle.h */,
+				C44299391CC31FC000473354 /* ExerciseCircle.m */,
+				C442993B1CC32F1400473354 /* WorkoutCard.h */,
+				C442993C1CC32F1400473354 /* WorkoutCard.m */,
 			);
 			path = fitiquick;
 			sourceTree = "<group>";
@@ -421,6 +431,7 @@
 				C442991A1CC2EB1900473354 /* AKPickerView.m in Sources */,
 				C44299331CC3076300473354 /* Exercise.m in Sources */,
 				C44299351CC3076300473354 /* Set.m in Sources */,
+				C442993A1CC31FC000473354 /* ExerciseCircle.m in Sources */,
 				C44299301CC3076300473354 /* Workout+CoreDataProperties.m in Sources */,
 				C44299341CC3076300473354 /* Set+CoreDataProperties.m in Sources */,
 				C44299321CC3076300473354 /* Exercise+CoreDataProperties.m in Sources */,
@@ -430,6 +441,7 @@
 				C4395E511CC2A354003BE00A /* AppDelegate.m in Sources */,
 				C4395E4E1CC2A354003BE00A /* main.m in Sources */,
 				C44299311CC3076300473354 /* Workout.m in Sources */,
+				C442993D1CC32F1400473354 /* WorkoutCard.m in Sources */,
 				C442992F1CC3076300473354 /* Day.m in Sources */,
 				C4395E5A1CC2A354003BE00A /* fitiquick.xcdatamodeld in Sources */,
 			);

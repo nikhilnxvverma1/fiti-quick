@@ -36,7 +36,7 @@
     NSError *error = nil;
     NSUInteger exerciseCountInDB=[self.managedObjectContext countForFetchRequest:fetchRequest error:&error];
     
-    if(exerciseCountInDB<exercises.count){
+    if(exerciseCountInDB!=exercises.count){
         
         //delete all entities first
         NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Exercise"];
@@ -53,7 +53,7 @@
             Exercise *object = [NSEntityDescription insertNewObjectForEntityForName:@"Exercise"
                                                                 inManagedObjectContext:self.managedObjectContext];
             [object setValue:key forKey:@"name"];
-            [object setValue:key forKey:@"bodypart"];
+            [object setValue:bodyPart forKey:@"bodypart"];
 
             NSError *error;
             if (![self.managedObjectContext save:&error]) {
