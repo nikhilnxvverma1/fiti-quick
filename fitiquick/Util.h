@@ -12,4 +12,8 @@
 @interface Util : NSObject
 
 +(UIColor*)r:(int)r g:(int)g b:(int)b;
++(BOOL) isToday:(NSDate *)date;
++(NSDate *)onlyDate:(NSDate*)date;
++ (NSDate*) dateFloor:(NSDate*) date;
++ (NSDate*) dateCeil:(NSDate*) date;
 @end

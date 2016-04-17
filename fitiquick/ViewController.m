@@ -13,17 +13,25 @@
 #import "ExerciseCircle.h"
 #import "WorkoutCard.h"
 #import "ExerciseView.h"
+#import "Day.h"
+#import "Set.h"
 
 @interface ViewController ()
 @property BOOL readyForAnimation;
 @property int level;
 @property NSArray *exerciseArray;
+@property Workout *currentWorkout;
+@property Day *today;
+@property NSDate *dateSelected;
 @end
 
 @implementation ViewController
 @synthesize readyForAnimation;
 @synthesize level;
 @synthesize exerciseArray;
+@synthesize currentWorkout;
+@synthesize today;
+@synthesize dateSelected;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -182,6 +190,91 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return [self.exerciseArray count];
+}
+
+#pragma mark calendar
+
+- (void)calendar:(JTCalendarManager *)calendar prepareDayView:(JTCalendarDayView *)dayView
+{
+    dayView.hidden = NO;
+    
+    // Test if the dayView is from another month than the page
+    // Use only in month mode for indicate the day of the previous or next month
+    if([dayView isFromAnotherMonth]){
+        dayView.hidden = YES;
+    }
+    // Today
+    else if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
+        dayView.circleView.hidden = NO;
+        dayView.circleView.backgroundColor = [UIColor blueColor];
+        dayView.dotView.backgroundColor = [UIColor whiteColor];
+        dayView.textLabel.textColor = [UIColor whiteColor];
+    }
+    // Selected date
+    else if(dateSelected && [_calendarManager.dateHelper date:dateSelected isTheSameDayThan:dayView.date]){
+        dayView.circleView.hidden = NO;
+        dayView.circleView.backgroundColor = [UIColor redColor];
+        dayView.dotView.backgroundColor = [UIColor whiteColor];
+        dayView.textLabel.textColor = [UIColor whiteColor];
+    }
+    // Another day of the current month
+    else{
+        dayView.circleView.hidden = YES;
+        dayView.dotView.backgroundColor = [UIColor redColor];
+        dayView.textLabel.textColor = [UIColor blackColor];
+    }
+    
+    // Your method to test if a date have an event for example
+    if([self haveEventForDay:dayView.date]){
+        dayView.dotView.hidden = NO;
+    }
+    else{
+        dayView.dotView.hidden = YES;
+    }
+}
+
+-(BOOL)haveEventForDay:(NSDate*)date{
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    NSDate *startDate=[Util dateFloor:date];
+    
+    NSDate *endDate=[Util dateCeil:date];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(date >= %@) AND (date <= %@)", startDate, endDate];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Day" inManagedObjectContext:delegate.managedObjectContext]];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *results = [delegate.managedObjectContext executeFetchRequest:request error:&error];
+    
+    return results.count>0;
+}
+
+- (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
+{
+    // Use to indicate the selected date
+    dateSelected = dayView.date;
+    
+    // Animation for the circleView
+    dayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
+    [UIView transitionWithView:dayView
+                      duration:.3
+                       options:0
+                    animations:^{
+                        dayView.circleView.transform = CGAffineTransformIdentity;
+                        [_calendarManager reload];
+                    } completion:nil];
+    
+    // Load the previous or next page if touch a day from another month
+    if(![_calendarManager.dateHelper date:_calendarContentView.date isTheSameMonthThan:dayView.date]){
+        if([_calendarContentView.date compare:dayView.date] == NSOrderedAscending){
+            [_calendarContentView loadNextPageWithAnimation];
+        }
+        else{
+            [_calendarContentView loadPreviousPageWithAnimation];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -350,10 +443,28 @@
     int weight=[self valueForRepIndex:(int)self.repValue.selectedItem];
     
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:@"Set"
+    
+    if(today==nil||![today.date isEqualToDate:[NSDate date]]){
+        today = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
+                                              inManagedObjectContext:delegate.managedObjectContext];
+        [today setDate:[NSDate date]];
+        
+    }
+    
+    if(currentWorkout==nil||currentWorkout.exercise!=_selectedExercise.exercise){
+        currentWorkout = [NSEntityDescription insertNewObjectForEntityForName:@"Workout"
+                                                                inManagedObjectContext:delegate.managedObjectContext];
+        [currentWorkout setValue:_selectedExercise.exercise forKey:@"exercise"];
+        [today addWorkoutsObject:currentWorkout];
+    }
+    
+    Set *set = [NSEntityDescription insertNewObjectForEntityForName:@"Set"
                                                             inManagedObjectContext:delegate.managedObjectContext];
-    [object setValue:[NSNumber numberWithInteger:reps] forKey:@"reps"];
-    [object setValue:[NSNumber numberWithInteger:weight] forKey:@"weight"];
+    [set setValue:[NSNumber numberWithInteger:reps] forKey:@"reps"];
+    [set setValue:[NSNumber numberWithInteger:weight] forKey:@"weight"];
+    [set setValue:currentWorkout forKey:@"workout"];
+    
+    [currentWorkout addSetsObject:set];
     
     NSError *error;
     if (![delegate.managedObjectContext save:&error]) {

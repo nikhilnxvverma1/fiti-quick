@@ -18,8 +18,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self applicationDocumentsDirectoryFinder];
     [self readExerciseList];
+    
     return YES;
+}
+
+// Returns the URL to the application's Documents directory.
+- (NSURL *)applicationDocumentsDirectoryFinder
+{
+    NSLog(@"%@",[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory  inDomains:NSUserDomainMask] lastObject]);
+    
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 -(void) readExerciseList{
