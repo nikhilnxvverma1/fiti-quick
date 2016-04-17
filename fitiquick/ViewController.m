@@ -27,8 +27,9 @@
     [self updateTime];
     readyForAnimation=YES;
     level=0;
-    
 }
+
+
 
 -(void)makeViews{
     CGRect frameSize=[[UIScreen mainScreen] bounds];
@@ -109,15 +110,15 @@
 
 - (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item{
     if(pickerView==_repValue){
-        return [NSString stringWithFormat:@"%d",item+1];
+        return [NSString stringWithFormat:@"%ld",item+1];
     }else if(pickerView==_weightValue){
-        return [NSString stringWithFormat:@"%d",item*5];
+        return [NSString stringWithFormat:@"%ld",item*5];
     }
     return @"!";
 }
 
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item{
-    NSLog(@"selected %d",item);
+    NSLog(@"selected %ld",item);
 }
 
 -(void)updateTime{
@@ -137,73 +138,105 @@
     NSLog(@"Swiped left");
 }
 
-- (IBAction)upSwipe:(id)sender {
-    NSLog(@"Swiped up");
-    if(readyForAnimation&&level<3){
-        readyForAnimation=NO;
-        
-        //move primary things up first
+- (void)moveItemsUp {
+    if(readyForAnimation){
         CGRect frameSize=[[UIScreen mainScreen] bounds];
         float h=frameSize.size.height;
+        float w=frameSize.size.width;
+        
+        if(level<3){
+            readyForAnimation=NO;
+            
+            //move primary things up first
 
-        CGPoint calContentPt=self.calendarContentView.center;
-        calContentPt.y-=h;
-        
-        CGPoint calMenuPt=self.calendarMenuView.center;
-        calMenuPt.y-=h;
-        
-        CGPoint digitalClockPoint=self.digitalClock.center;
-        digitalClockPoint.y-=h;
-        
-        CGPoint repsPoint=self.reps.center;
-        repsPoint.y-=h;
-        
-        CGPoint weightsPoint=self.weights.center;
-        weightsPoint.y-=h;
-        
-        CGPoint exercisePoint=self.exercise.center;
-        exercisePoint.y-=h;
-
-        [UIView animateWithDuration:0.5
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-             self.calendarContentView.center=calContentPt;
-             self.calendarMenuView.center=calMenuPt;
-             self.digitalClock.center=digitalClockPoint;
-             self.reps.center=repsPoint;
-             self.weights.center=weightsPoint;
-             self.exercise.center=exercisePoint;
+            
+            CGPoint calContentPt=self.calendarContentView.center;
+            calContentPt.y-=h;
+            
+            CGPoint calMenuPt=self.calendarMenuView.center;
+            calMenuPt.y-=h;
+            
+            CGPoint digitalClockPoint=self.digitalClock.center;
+            digitalClockPoint.y-=h;
+            
+            CGPoint repsPoint=self.reps.center;
+            repsPoint.y-=h;
+            
+            CGPoint weightsPoint=self.weights.center;
+            weightsPoint.y-=h;
+            
+            CGPoint exercisePoint=self.exercise.center;
+            exercisePoint.y-=h;
+            
+            [UIView animateWithDuration:0.5
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{
+                                 self.calendarContentView.center=calContentPt;
+                                 self.calendarMenuView.center=calMenuPt;
+                                 self.digitalClock.center=digitalClockPoint;
+                                 self.reps.center=repsPoint;
+                                 self.weights.center=weightsPoint;
+                                 self.exercise.center=exercisePoint;
+                             }
+                             completion:^(BOOL finished){
+                                 readyForAnimation=YES;
+                             }];
+            
+            //move secondary things up after a delay
+            
+            CGPoint repVPoint=self.repValue.center;
+            repVPoint.y-=h;
+            
+            CGPoint weightVPoint=self.weightValue.center;
+            weightVPoint.y-=h;
+            
+            [UIView animateWithDuration:0.5
+                                  delay:0.2
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{
+                                 self.repValue.center=repVPoint;
+                                 self.weightValue.center=weightVPoint;
+                                 
+                             }
+                             completion:^(BOOL finished){
+                                 readyForAnimation=YES;
+                                 level++;
+                             }];
+        }else{
+            readyForAnimation=NO;
+            //reset everything back to where it was
+            self.calendarContentView.frame=CGRectMake(0, h/10-h, w, h/3);
+            self.calendarMenuView.frame=CGRectMake(0, 0-h, w, h/10);
+            self.digitalClock.center=CGPointMake(self.digitalClock.center.x,h/2);
+            self.reps.center=CGPointMake(self.reps.center.x,h/6+h);
+            self.repValue.frame=CGRectMake(0,h/4+h,w,3*h/4);
+            self.weights.center=CGPointMake(self.weights.center.x,h/6+2*h);
+            self.weightValue.frame=CGRectMake(0,h/4+2*h,w,3*h/4);
+            self.exercise.center=CGPointMake(self.exercise.center.x,h/6+3*h);
+            
+            self.digitalClock.alpha=0;
+            [UIView animateWithDuration:1.0
+                                  delay:0.4
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{
+                                 self.digitalClock.alpha=1;
+                             }
+                             completion:^(BOOL finished){
+                                 readyForAnimation=YES;
+                                 level=0;
+                             }];
+            
         }
-                         completion:^(BOOL finished){
-            readyForAnimation=YES;
-        }];
-        
-        //move secondary things up after a delay
-
-        CGPoint repVPoint=self.repValue.center;
-        repVPoint.y-=h;
-        
-        CGPoint weightVPoint=self.weightValue.center;
-        weightVPoint.y-=h;
-        
-        [UIView animateWithDuration:0.5
-                              delay:0.2
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             self.repValue.center=repVPoint;
-                             self.weightValue.center=weightVPoint;
-
-                         }
-                         completion:^(BOOL finished){
-                             readyForAnimation=YES;
-                             level++;
-                         }];
     }
 }
 
-- (IBAction)downSwipe:(id)sender {
-    NSLog(@"Swiped down");
+- (IBAction)upSwipe:(id)sender {
+    NSLog(@"Swiped up");
+    [self moveItemsUp];
+}
+
+- (void)moveItemsDown {
     if(readyForAnimation&&level>=0){
         readyForAnimation=NO;
         CGRect frameSize=[[UIScreen mainScreen] bounds];
@@ -263,12 +296,12 @@
                              readyForAnimation=YES;
                              level--;
                          }];
-        
-        
     }
-    
-    
-    
+}
+
+- (IBAction)downSwipe:(id)sender {
+    NSLog(@"Swiped down");
+    [self moveItemsDown];
 }
 
 

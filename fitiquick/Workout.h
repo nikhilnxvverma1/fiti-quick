@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Day, Set;
+@class Day, Exercise, Set;
 
 NS_ASSUME_NONNULL_BEGIN
 

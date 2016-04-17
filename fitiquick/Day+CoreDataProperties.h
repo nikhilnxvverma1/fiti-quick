@@ -16,16 +16,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Day (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSDate *date;
-@property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *workouts;
+@property (nullable, nonatomic, retain) NSSet<Workout *> *workouts;
 
 @end
 
 @interface Day (CoreDataGeneratedAccessors)
 
-- (void)addWorkoutsObject:(NSManagedObject *)value;
-- (void)removeWorkoutsObject:(NSManagedObject *)value;
-- (void)addWorkouts:(NSSet<NSManagedObject *> *)values;
-- (void)removeWorkouts:(NSSet<NSManagedObject *> *)values;
+- (void)addWorkoutsObject:(Workout *)value;
+- (void)removeWorkoutsObject:(Workout *)value;
+- (void)addWorkouts:(NSSet<Workout *> *)values;
+- (void)removeWorkouts:(NSSet<Workout *> *)values;
 
 @end
 

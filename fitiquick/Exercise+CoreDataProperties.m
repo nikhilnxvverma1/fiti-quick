@@ -14,5 +14,6 @@
 @implementation Exercise (CoreDataProperties)
 
 @dynamic name;
+@dynamic bodypart;
 
 @end

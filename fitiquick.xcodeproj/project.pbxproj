@@ -17,17 +17,17 @@
 		C4395E5F1CC2A354003BE00A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4395E5D1CC2A354003BE00A /* LaunchScreen.storyboard */; };
 		C4395E6A1CC2A354003BE00A /* fitiquickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4395E691CC2A354003BE00A /* fitiquickTests.m */; };
 		C4395E751CC2A354003BE00A /* fitiquickUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4395E741CC2A354003BE00A /* fitiquickUITests.m */; };
-		C44299091CC2C89E00473354 /* Day+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298FA1CC2C89E00473354 /* Day+CoreDataProperties.m */; };
-		C442990A1CC2C89E00473354 /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298FC1CC2C89E00473354 /* Day.m */; };
-		C442990B1CC2C89E00473354 /* Set+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298FE1CC2C89E00473354 /* Set+CoreDataProperties.m */; };
-		C442990C1CC2C89E00473354 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299001CC2C89E00473354 /* Set.m */; };
-		C442990D1CC2C89E00473354 /* Workout+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299021CC2C89E00473354 /* Workout+CoreDataProperties.m */; };
-		C442990E1CC2C89E00473354 /* Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299041CC2C89E00473354 /* Workout.m */; };
-		C442990F1CC2C89E00473354 /* Exercise+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299061CC2C89E00473354 /* Exercise+CoreDataProperties.m */; };
-		C44299101CC2C89E00473354 /* Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299081CC2C89E00473354 /* Exercise.m */; };
 		C44299161CC2D84A00473354 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299151CC2D84A00473354 /* Util.m */; };
 		C442991A1CC2EB1900473354 /* AKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299191CC2EB1900473354 /* AKPickerView.m */; };
 		C442991C1CC3046D00473354 /* ExerciseList.plist in Resources */ = {isa = PBXBuildFile; fileRef = C442991B1CC3046D00473354 /* ExerciseList.plist */; };
+		C442992E1CC3076300473354 /* Day+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C442991F1CC3076300473354 /* Day+CoreDataProperties.m */; };
+		C442992F1CC3076300473354 /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299211CC3076300473354 /* Day.m */; };
+		C44299301CC3076300473354 /* Workout+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299231CC3076300473354 /* Workout+CoreDataProperties.m */; };
+		C44299311CC3076300473354 /* Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299251CC3076300473354 /* Workout.m */; };
+		C44299321CC3076300473354 /* Exercise+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299271CC3076300473354 /* Exercise+CoreDataProperties.m */; };
+		C44299331CC3076300473354 /* Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = C44299291CC3076300473354 /* Exercise.m */; };
+		C44299341CC3076300473354 /* Set+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C442992B1CC3076300473354 /* Set+CoreDataProperties.m */; };
+		C44299351CC3076300473354 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = C442992D1CC3076300473354 /* Set.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,27 +67,27 @@
 		C4395E701CC2A354003BE00A /* fitiquickUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fitiquickUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4395E741CC2A354003BE00A /* fitiquickUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fitiquickUITests.m; sourceTree = "<group>"; };
 		C4395E761CC2A354003BE00A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C44298F91CC2C89E00473354 /* Day+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Day+CoreDataProperties.h"; sourceTree = "<group>"; };
-		C44298FA1CC2C89E00473354 /* Day+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Day+CoreDataProperties.m"; sourceTree = "<group>"; };
-		C44298FB1CC2C89E00473354 /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
-		C44298FC1CC2C89E00473354 /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
-		C44298FD1CC2C89E00473354 /* Set+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Set+CoreDataProperties.h"; sourceTree = "<group>"; };
-		C44298FE1CC2C89E00473354 /* Set+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Set+CoreDataProperties.m"; sourceTree = "<group>"; };
-		C44298FF1CC2C89E00473354 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
-		C44299001CC2C89E00473354 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
-		C44299011CC2C89E00473354 /* Workout+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Workout+CoreDataProperties.h"; sourceTree = "<group>"; };
-		C44299021CC2C89E00473354 /* Workout+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Workout+CoreDataProperties.m"; sourceTree = "<group>"; };
-		C44299031CC2C89E00473354 /* Workout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Workout.h; sourceTree = "<group>"; };
-		C44299041CC2C89E00473354 /* Workout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Workout.m; sourceTree = "<group>"; };
-		C44299051CC2C89E00473354 /* Exercise+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Exercise+CoreDataProperties.h"; sourceTree = "<group>"; };
-		C44299061CC2C89E00473354 /* Exercise+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Exercise+CoreDataProperties.m"; sourceTree = "<group>"; };
-		C44299071CC2C89E00473354 /* Exercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exercise.h; sourceTree = "<group>"; };
-		C44299081CC2C89E00473354 /* Exercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Exercise.m; sourceTree = "<group>"; };
 		C44299141CC2D84A00473354 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		C44299151CC2D84A00473354 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		C44299181CC2EB1900473354 /* AKPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKPickerView.h; sourceTree = "<group>"; };
 		C44299191CC2EB1900473354 /* AKPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKPickerView.m; sourceTree = "<group>"; };
 		C442991B1CC3046D00473354 /* ExerciseList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExerciseList.plist; sourceTree = "<group>"; };
+		C442991E1CC3076300473354 /* Day+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Day+CoreDataProperties.h"; sourceTree = "<group>"; };
+		C442991F1CC3076300473354 /* Day+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Day+CoreDataProperties.m"; sourceTree = "<group>"; };
+		C44299201CC3076300473354 /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
+		C44299211CC3076300473354 /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
+		C44299221CC3076300473354 /* Workout+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Workout+CoreDataProperties.h"; sourceTree = "<group>"; };
+		C44299231CC3076300473354 /* Workout+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Workout+CoreDataProperties.m"; sourceTree = "<group>"; };
+		C44299241CC3076300473354 /* Workout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Workout.h; sourceTree = "<group>"; };
+		C44299251CC3076300473354 /* Workout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Workout.m; sourceTree = "<group>"; };
+		C44299261CC3076300473354 /* Exercise+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Exercise+CoreDataProperties.h"; sourceTree = "<group>"; };
+		C44299271CC3076300473354 /* Exercise+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Exercise+CoreDataProperties.m"; sourceTree = "<group>"; };
+		C44299281CC3076300473354 /* Exercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exercise.h; sourceTree = "<group>"; };
+		C44299291CC3076300473354 /* Exercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Exercise.m; sourceTree = "<group>"; };
+		C442992A1CC3076300473354 /* Set+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Set+CoreDataProperties.h"; sourceTree = "<group>"; };
+		C442992B1CC3076300473354 /* Set+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Set+CoreDataProperties.m"; sourceTree = "<group>"; };
+		C442992C1CC3076300473354 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
+		C442992D1CC3076300473354 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
 		C7E28DB264111B7A648E2201 /* Pods-fitiquick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitiquick.release.xcconfig"; path = "Pods/Target Support Files/Pods-fitiquick/Pods-fitiquick.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,8 +160,8 @@
 		C4395E4B1CC2A354003BE00A /* fitiquick */ = {
 			isa = PBXGroup;
 			children = (
+				C442991D1CC3075300473354 /* model */,
 				C44299171CC2EAF400473354 /* 3rd Party */,
-				C44298F81CC2C87E00473354 /* model */,
 				C4395E4F1CC2A354003BE00A /* AppDelegate.h */,
 				C4395E501CC2A354003BE00A /* AppDelegate.m */,
 				C44299141CC2D84A00473354 /* Util.h */,
@@ -204,29 +204,6 @@
 			path = fitiquickUITests;
 			sourceTree = "<group>";
 		};
-		C44298F81CC2C87E00473354 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				C44298F91CC2C89E00473354 /* Day+CoreDataProperties.h */,
-				C44298FA1CC2C89E00473354 /* Day+CoreDataProperties.m */,
-				C44298FB1CC2C89E00473354 /* Day.h */,
-				C44298FC1CC2C89E00473354 /* Day.m */,
-				C44298FD1CC2C89E00473354 /* Set+CoreDataProperties.h */,
-				C44298FE1CC2C89E00473354 /* Set+CoreDataProperties.m */,
-				C44298FF1CC2C89E00473354 /* Set.h */,
-				C44299001CC2C89E00473354 /* Set.m */,
-				C44299011CC2C89E00473354 /* Workout+CoreDataProperties.h */,
-				C44299021CC2C89E00473354 /* Workout+CoreDataProperties.m */,
-				C44299031CC2C89E00473354 /* Workout.h */,
-				C44299041CC2C89E00473354 /* Workout.m */,
-				C44299051CC2C89E00473354 /* Exercise+CoreDataProperties.h */,
-				C44299061CC2C89E00473354 /* Exercise+CoreDataProperties.m */,
-				C44299071CC2C89E00473354 /* Exercise.h */,
-				C44299081CC2C89E00473354 /* Exercise.m */,
-			);
-			name = model;
-			sourceTree = "<group>";
-		};
 		C44299171CC2EAF400473354 /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +211,29 @@
 				C44299191CC2EB1900473354 /* AKPickerView.m */,
 			);
 			name = "3rd Party";
+			sourceTree = "<group>";
+		};
+		C442991D1CC3075300473354 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				C442991E1CC3076300473354 /* Day+CoreDataProperties.h */,
+				C442991F1CC3076300473354 /* Day+CoreDataProperties.m */,
+				C44299201CC3076300473354 /* Day.h */,
+				C44299211CC3076300473354 /* Day.m */,
+				C44299221CC3076300473354 /* Workout+CoreDataProperties.h */,
+				C44299231CC3076300473354 /* Workout+CoreDataProperties.m */,
+				C44299241CC3076300473354 /* Workout.h */,
+				C44299251CC3076300473354 /* Workout.m */,
+				C44299261CC3076300473354 /* Exercise+CoreDataProperties.h */,
+				C44299271CC3076300473354 /* Exercise+CoreDataProperties.m */,
+				C44299281CC3076300473354 /* Exercise.h */,
+				C44299291CC3076300473354 /* Exercise.m */,
+				C442992A1CC3076300473354 /* Set+CoreDataProperties.h */,
+				C442992B1CC3076300473354 /* Set+CoreDataProperties.m */,
+				C442992C1CC3076300473354 /* Set.h */,
+				C442992D1CC3076300473354 /* Set.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,18 +419,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C442991A1CC2EB1900473354 /* AKPickerView.m in Sources */,
+				C44299331CC3076300473354 /* Exercise.m in Sources */,
+				C44299351CC3076300473354 /* Set.m in Sources */,
+				C44299301CC3076300473354 /* Workout+CoreDataProperties.m in Sources */,
+				C44299341CC3076300473354 /* Set+CoreDataProperties.m in Sources */,
+				C44299321CC3076300473354 /* Exercise+CoreDataProperties.m in Sources */,
 				C44299161CC2D84A00473354 /* Util.m in Sources */,
-				C442990B1CC2C89E00473354 /* Set+CoreDataProperties.m in Sources */,
-				C44299101CC2C89E00473354 /* Exercise.m in Sources */,
-				C442990D1CC2C89E00473354 /* Workout+CoreDataProperties.m in Sources */,
-				C442990F1CC2C89E00473354 /* Exercise+CoreDataProperties.m in Sources */,
-				C442990A1CC2C89E00473354 /* Day.m in Sources */,
+				C442992E1CC3076300473354 /* Day+CoreDataProperties.m in Sources */,
 				C4395E541CC2A354003BE00A /* ViewController.m in Sources */,
 				C4395E511CC2A354003BE00A /* AppDelegate.m in Sources */,
-				C442990C1CC2C89E00473354 /* Set.m in Sources */,
 				C4395E4E1CC2A354003BE00A /* main.m in Sources */,
-				C442990E1CC2C89E00473354 /* Workout.m in Sources */,
-				C44299091CC2C89E00473354 /* Day+CoreDataProperties.m in Sources */,
+				C44299311CC3076300473354 /* Workout.m in Sources */,
+				C442992F1CC3076300473354 /* Day.m in Sources */,
 				C4395E5A1CC2A354003BE00A /* fitiquick.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

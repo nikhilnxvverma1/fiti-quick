@@ -7,6 +7,7 @@
 //
 
 #import "Set.h"
+#import "Workout.h"
 
 @implementation Set
 

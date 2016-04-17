@@ -8,6 +8,7 @@
 
 #import "Workout.h"
 #import "Day.h"
+#import "Exercise.h"
 #import "Set.h"
 
 @implementation Workout

@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSNumber *reps;
 @property (nullable, nonatomic, retain) NSNumber *weight;
-@property (nullable, nonatomic, retain) NSManagedObject *workout;
+@property (nullable, nonatomic, retain) Workout *workout;
 
 @end
 

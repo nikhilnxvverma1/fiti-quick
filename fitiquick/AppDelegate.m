@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Exercise.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +18,52 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self readExerciseList];
     return YES;
+}
+
+-(void) readExerciseList{
+    NSLog(@"Reading exercise list");
+    // Path to the plist (in the application bundle)
+    NSString *path = [[NSBundle mainBundle] pathForResource:
+                      @"ExerciseList" ofType:@"plist"];
+    
+    NSDictionary *exercises = [NSDictionary dictionaryWithContentsOfFile:path];
+//    NSLog(@"dictionary = %@", exercises);
+
+//    NSLog(@"count : %ld ",[exercises count]);
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Exercise"];
+    NSError *error = nil;
+    NSUInteger exerciseCountInDB=[self.managedObjectContext countForFetchRequest:fetchRequest error:&error];
+    
+    if(exerciseCountInDB<exercises.count){
+        
+        //delete all entities first
+        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Exercise"];
+        NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
+        
+        NSError *deleteError = nil;
+        [self.persistentStoreCoordinator executeRequest:delete withContext:self.managedObjectContext error:&deleteError];
+        
+        // Show the string values
+        for (NSString *key in exercises){
+            NSString *bodyPart=[exercises objectForKey:key];
+
+            
+            Exercise *object = [NSEntityDescription insertNewObjectForEntityForName:@"Exercise"
+                                                                inManagedObjectContext:self.managedObjectContext];
+            [object setValue:key forKey:@"name"];
+            [object setValue:key forKey:@"bodypart"];
+
+            NSError *error;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"Failed to save - error: %@", [error localizedDescription]);
+            }
+            
+            NSLog(@"inserted %@ - %@", key, bodyPart);
+        }
+    }
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

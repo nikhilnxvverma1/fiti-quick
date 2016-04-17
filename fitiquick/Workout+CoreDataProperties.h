@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Workout (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSManagedObject *exercise;
-@property (nullable, nonatomic, retain) NSSet<Set *> *sets;
 @property (nullable, nonatomic, retain) Day *day;
+@property (nullable, nonatomic, retain) Exercise *exercise;
+@property (nullable, nonatomic, retain) NSSet<Set *> *sets;
 
 @end
 

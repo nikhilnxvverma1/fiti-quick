@@ -3,50 +3,50 @@
 <plist version="1.0">
 <dict>
 	<key>Bicep Curls</key>
-	<string></string>
+	<string>Biceps</string>
 	<key>Flat Bench Press</key>
-	<string></string>
+	<string>Chest</string>
 	<key>Deadlift</key>
-	<string></string>
+	<string>Back</string>
 	<key>Shoulder Press</key>
-	<string></string>
+	<string>Shoulder</string>
 	<key>Hammer Curls</key>
-	<string></string>
+	<string>Bicep</string>
 	<key>Shoulder Raises</key>
-	<string></string>
+	<string>Shoulder</string>
 	<key>Tricep Extension</key>
-	<string></string>
+	<string>Tricep</string>
 	<key>Concentration Curls</key>
-	<string></string>
+	<string>Biceps</string>
 	<key>Incline Bench Press</key>
-	<string></string>
+	<string>Chest</string>
 	<key>Decline Bench Press</key>
-	<string></string>
+	<string>Chest</string>
 	<key>Rowing</key>
-	<string></string>
+	<string>Back</string>
 	<key>Chest Flying</key>
-	<string></string>
+	<string>Chest</string>
 	<key>Calf Raises</key>
-	<string></string>
+	<string>Legs</string>
 	<key>Squats</key>
-	<string></string>
+	<string>Legs</string>
 	<key>Lunges</key>
-	<string></string>
+	<string>Legs</string>
 	<key>Hamstring Extension</key>
-	<string></string>
+	<string>Legs</string>
 	<key>Quad Press</key>
-	<string></string>
+	<string>Legs</string>
 	<key>Shrugs</key>
-	<string></string>
+	<string>Shoulder</string>
 	<key>Forearm Roll</key>
-	<string></string>
+	<string>Biceps</string>
 	<key>Lying Extensions</key>
-	<string></string>
+	<string>Triceps</string>
 	<key>Rope Pull</key>
-	<string></string>
+	<string>Biceps</string>
 	<key>Farmers Walk</key>
-	<string></string>
+	<string>Shoulders</string>
 	<key>Seated Curl</key>
-	<string></string>
+	<string>Biceps</string>
 </dict>
 </plist>

@@ -13,8 +13,8 @@
 
 @implementation Workout (CoreDataProperties)
 
+@dynamic day;
 @dynamic exercise;
 @dynamic sets;
-@dynamic day;
 
 @end

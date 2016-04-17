@@ -7,6 +7,7 @@
 //
 
 #import "Day.h"
+#import "Workout.h"
 
 @implementation Day
 

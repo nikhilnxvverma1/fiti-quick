@@ -5,6 +5,7 @@
         <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" inverseName="day" inverseEntity="Workout" syncable="YES"/>
     </entity>
     <entity name="Exercise" representedClassName="Exercise" syncable="YES">
+        <attribute name="bodypart" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Set" representedClassName="Set" syncable="YES">
@@ -19,7 +20,7 @@
     </entity>
     <elements>
         <element name="Day" positionX="-38" positionY="-147" width="128" height="75"/>
-        <element name="Exercise" positionX="-225" positionY="-63" width="128" height="60"/>
+        <element name="Exercise" positionX="-225" positionY="-63" width="128" height="75"/>
         <element name="Set" positionX="180" positionY="-81" width="128" height="90"/>
         <element name="Workout" positionX="-18" positionY="108" width="128" height="90"/>
     </elements>
