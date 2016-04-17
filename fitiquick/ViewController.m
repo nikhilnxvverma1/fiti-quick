@@ -21,6 +21,7 @@
 @property int level;
 @property NSArray *exerciseArray;
 @property Workout *currentWorkout;
+@property Day *selectedDay;
 @property Day *today;
 @property NSDate *dateSelected;
 @end
@@ -32,6 +33,7 @@
 @synthesize currentWorkout;
 @synthesize today;
 @synthesize dateSelected;
+@synthesize selectedDay;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,8 +43,6 @@
     readyForAnimation=YES;
     level=0;
 }
-
-
 
 -(void)makeViews{
     CGRect frameSize=[[UIScreen mainScreen] bounds];
@@ -61,11 +61,13 @@
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:[NSDate date]];
     
-    _scrollLog=[[UITableView alloc] initWithFrame:CGRectMake(0, 13*h/30-h, w,3*h/7)];
+    _scrollLog=[[UITableView alloc] initWithFrame:CGRectMake(w/25, 13*h/30-h, w-2*w/25,3*h/7)];
     _scrollLog.delegate=self;
     _scrollLog.dataSource=self;
-    _scrollLog.backgroundColor=[UIColor redColor];
+    _scrollLog.allowsSelection=NO;
+    _scrollLog.backgroundColor=[UIColor clearColor];
     [_scrollLog registerClass:[WorkoutCard class] forCellReuseIdentifier:@"workoutCell"];
+    
     [self.view addSubview:_scrollLog];
 //    [self dummyWorkoutCards];
     [_scrollLog setContentOffset:CGPointMake(0, 44) animated:YES];
@@ -133,7 +135,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
 {
-    return 1;
+    return selectedDay.workouts.count;
 }
 
 // number of row in the section, I assume there is only 1 row
@@ -152,16 +154,32 @@
     if (cell == nil) {
         cell = [[WorkoutCard alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    // Just want to test, so I hardcode the data
-//    cell.descriptionLabel.text = @"Testing";
-    
+    cell.workout=[[selectedDay.workouts allObjects] objectAtIndex:indexPath.section];
+
     return cell;
 }
 
 // when user tap the row, what action you want to perform
 - (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected %d row", indexPath.row);
+//    NSLog(@"selected %d row", indexPath.row);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return [[UIScreen mainScreen] bounds].size.height/25;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor clearColor];
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;
 }
 
 
@@ -326,6 +344,28 @@
             [_calendarContentView loadPreviousPageWithAnimation];
         }
     }
+    
+    //get the day for the selected date
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    NSDate *startDate=[Util dateFloor:dateSelected];
+    
+    NSDate *endDate=[Util dateCeil:dateSelected];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(date >= %@) AND (date <= %@)", startDate, endDate];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Day" inManagedObjectContext:delegate.managedObjectContext]];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *results = [delegate.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if(results.count>0){
+        selectedDay=[results objectAtIndex:0];
+    }else{
+        selectedDay=nil;
+    }
+    [self.scrollLog reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -476,7 +516,7 @@
             self.exercise.center=CGPointMake(self.exercise.center.x,h/6+3*h);
             self.exerciseCollection.frame=CGRectMake(0, h/2+3*h, w, h/2);
             self.selectedExercise.frame=CGRectMake(w/2-w/8, h/4+3*h, w/4, w/4);
-            self.scrollLog.frame=CGRectMake(0, 13*h/30-h, w,3*h/7);
+            self.scrollLog.frame=CGRectMake(w/25, 13*h/30-h, w-2*w/25,3*h/7);
             
             self.digitalClock.alpha=0;
             [UIView animateWithDuration:1.0
@@ -500,7 +540,12 @@
     
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-    if(today==nil||![today.date isEqualToDate:[NSDate date]]){
+    if(today==nil){
+        //fetch a record from the db for today if one exists
+        today=[self getToday];
+    }
+    
+    if(today==nil){//||![today.date isEqualToDate:[NSDate date]]){//the second case is for 11:59 pm
         today = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
                                               inManagedObjectContext:delegate.managedObjectContext];
         [today setDate:[NSDate date]];
@@ -526,6 +571,31 @@
     if (![delegate.managedObjectContext save:&error]) {
         NSLog(@"Failed to save - error: %@", [error localizedDescription]);
     }
+}
+
+-(Day*)getToday{
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    NSDate *date=[NSDate date];
+    
+    NSDate *startDate=[Util dateFloor:date];
+    
+    NSDate *endDate=[Util dateCeil:date];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(date >= %@) AND (date <= %@)", startDate, endDate];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Day" inManagedObjectContext:delegate.managedObjectContext]];
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *results = [delegate.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if(results.count>0){
+        return [results objectAtIndex:0];
+    }else{
+        return nil;
+    }
+
 }
 
 - (IBAction)upSwipe:(id)sender {

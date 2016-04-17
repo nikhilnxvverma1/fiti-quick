@@ -10,5 +10,5 @@
 #import "Workout.h"
 @interface WorkoutCard : UITableViewCell
 @property (weak,nonatomic) Workout *workout;
-
+@property (strong,nonatomic) UIView *sideBar;
 @end

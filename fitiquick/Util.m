@@ -44,4 +44,12 @@
         [dateComponents setSecond:59];
         
         return [gregorian dateFromComponents:dateComponents];
-    }@end
+}
+
++ (float) heightForNumberOfLines:(int)lines{
+    return lines*22.5;
+}
+
+
+
+@end

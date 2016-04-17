@@ -16,4 +16,5 @@
 +(NSDate *)onlyDate:(NSDate*)date;
 + (NSDate*) dateFloor:(NSDate*) date;
 + (NSDate*) dateCeil:(NSDate*) date;
++ (float) heightForNumberOfLines:(int)lines;
 @end
