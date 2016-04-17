@@ -11,9 +11,9 @@
 
 @implementation WorkoutCard
 
--(id)initWithFrame:(CGRect)frame workout:(Workout*)workout{
+-(id)initWithFrame:(CGRect)frame{
     if(self=[super initWithFrame:frame]){
-        self.workout=workout;
+        
         self.layer.backgroundColor=[Util r:75 g:76 b:108].CGColor;
         
         UIView *sideBar=[[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width/25, frame.size.height)];
@@ -21,6 +21,11 @@
         [self addSubview:sideBar];
     }
     return self;
+}
+
+-(void)setWorkout:(Workout *)workout{
+    _workout=workout;
+    //TODO
 }
 
 /*

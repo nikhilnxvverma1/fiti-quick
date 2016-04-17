@@ -61,6 +61,15 @@
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:[NSDate date]];
     
+    _scrollLog=[[UITableView alloc] initWithFrame:CGRectMake(0, 13*h/30-h, w,3*h/7)];
+    _scrollLog.delegate=self;
+    _scrollLog.dataSource=self;
+    _scrollLog.backgroundColor=[UIColor redColor];
+    [_scrollLog registerClass:[WorkoutCard class] forCellReuseIdentifier:@"workoutCell"];
+    [self.view addSubview:_scrollLog];
+//    [self dummyWorkoutCards];
+    [_scrollLog setContentOffset:CGPointMake(0, 44) animated:YES];
+    
     self.goDown=[[UIButton alloc] initWithFrame:CGRectMake(w/2-w/10, -h/10, w/5, h/10)];
     [self.goDown setTitle:@"Down" forState:UIControlStateNormal];
     [self.goDown addTarget:self action:@selector(moveItemsUp) forControlEvents:UIControlEventTouchUpInside];
@@ -113,6 +122,49 @@
 
 }
 
+-(void)dummyWorkoutCards{
+    //remove all existing cards
+    
+    int random=arc4random_uniform(3)+2;
+    for(int i=0;i<random;i++){
+//        WorkoutCard *workoutCard=[[WorkoutCard alloc] initWithFrame:CGRectMake(0, 0, 275, 150) workout:nil];
+//        [self.scrollLog addSubview:workoutCard];
+    }
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
+{
+    return 1;
+}
+
+// number of row in the section, I assume there is only 1 row
+- (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+// the cell will be returned to the tableView
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"workoutCell";
+    
+    // Similar to UITableViewCell, but
+    WorkoutCard *cell = (WorkoutCard *)[_scrollLog dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[WorkoutCard alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    // Just want to test, so I hardcode the data
+//    cell.descriptionLabel.text = @"Testing";
+    
+    return cell;
+}
+
+// when user tap the row, what action you want to perform
+- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected %d row", indexPath.row);
+}
+
+
 -(void)initExercises{
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -138,8 +190,7 @@
         [self.view addSubview:_selectedExercise];
         [self.selectedExercise setExercise:first];
         
-        WorkoutCard *workoutCard=[[WorkoutCard alloc] initWithFrame:CGRectMake(25, 200, 275, 150) workout:nil];
-//        [self.view addSubview:workoutCard];
+        
         
         
         //setup a flow layout for the exercise collection
@@ -386,6 +437,9 @@
             CGPoint repVPoint=self.repValue.center;
             repVPoint.y-=h;
             
+            CGPoint scrollLogPt=self.scrollLog.center;
+            scrollLogPt.y-=h;
+            
             CGPoint weightVPoint=self.weightValue.center;
             weightVPoint.y-=h;
             
@@ -399,6 +453,7 @@
                                  self.repValue.center=repVPoint;
                                  self.weightValue.center=weightVPoint;
                                  self.exerciseCollection.center=exerciseColPoint;
+                                 self.scrollLog.center=scrollLogPt;
                                  
                              }
                              completion:^(BOOL finished){
@@ -421,6 +476,7 @@
             self.exercise.center=CGPointMake(self.exercise.center.x,h/6+3*h);
             self.exerciseCollection.frame=CGRectMake(0, h/2+3*h, w, h/2);
             self.selectedExercise.frame=CGRectMake(w/2-w/8, h/4+3*h, w/4, w/4);
+            self.scrollLog.frame=CGRectMake(0, 13*h/30-h, w,3*h/7);
             
             self.digitalClock.alpha=0;
             [UIView animateWithDuration:1.0
@@ -490,12 +546,16 @@
         CGPoint weightVPoint=self.weightValue.center;
         weightVPoint.y+=h;
         
+        CGPoint scrollLogPoint=self.scrollLog.center;
+        scrollLogPoint.y+=h;
+        
         [UIView animateWithDuration:0.5
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              self.repValue.center=repVPoint;
                              self.weightValue.center=weightVPoint;
+                             self.scrollLog.center=scrollLogPoint;
                              
                          }
                          completion:^(BOOL finished){

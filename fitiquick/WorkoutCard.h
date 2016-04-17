@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Workout.h"
-@interface WorkoutCard : UIView
+@interface WorkoutCard : UITableViewCell
 @property (weak,nonatomic) Workout *workout;
-
--(id)initWithFrame:(CGRect)frame workout:(Workout*)workout;
 
 @end

@@ -11,7 +11,7 @@
 #import "JTCalendar/JTCalendar.h"
 #import "ExerciseView.h"
 
-@interface ViewController : UIViewController<AKPickerViewDataSource,AKPickerViewDelegate,JTCalendarDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface ViewController : UIViewController<AKPickerViewDataSource,AKPickerViewDelegate,JTCalendarDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UITableViewDelegate,UITableViewDataSource>
 - (IBAction)upSwipe:(id)sender;
 - (IBAction)downSwipe:(id)sender;
 - (IBAction)rightSwipe:(id)sender;
@@ -30,5 +30,7 @@
 @property (strong,nonatomic) UIButton *goDown;
 @property (strong, nonatomic) UICollectionView *exerciseCollection;
 @property (strong,nonatomic) ExerciseView *selectedExercise;
+
+@property (strong,nonatomic) UITableView *scrollLog;
 @end
 
