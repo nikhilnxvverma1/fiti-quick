@@ -527,35 +527,110 @@
                                  readyForAnimation=YES;
                                  level++;
                              }];
-        }else{
+        }else {
+            
             readyForAnimation=NO;
             
-            [self insertEntry];
-            //reset everything back to where it was
-            self.calendarContentView.frame=CGRectMake(0, h/10-h, w, h/3);
-            self.calendarMenuView.frame=CGRectMake(0, 0-h, w, h/10);
-            self.goDown.frame=CGRectMake(w/2-w/10, -h/10, w/5, h/10);
-            self.digitalClock.center=CGPointMake(self.digitalClock.center.x,h/2-30);
-            self.reps.center=CGPointMake(self.reps.center.x,h/6+h-30);
-            self.repValue.frame=CGRectMake(0,h/4+h,w,3*h/4);
-            self.weights.center=CGPointMake(self.weights.center.x,h/6+2*h-30);
-            self.weightValue.frame=CGRectMake(0,h/4+2*h,w,3*h/4);
-            self.exercise.center=CGPointMake(self.exercise.center.x,h/6+3*h-30);
-            self.exerciseCollection.frame=CGRectMake(0, h/2+3*h, w, h/2);
-            self.selectedExercise.frame=CGRectMake(w/2-w/8, h/4+3*h, w/4, w/4);
-            self.scrollLog.frame=CGRectMake(w/25, 13*h/30-h, w-2*w/25,3*h/7);
+            //move primary things up first
             
-            self.digitalClock.alpha=0;
-            [UIView animateWithDuration:1.0
-                                  delay:0.4
+            
+            CGPoint calContentPt=self.calendarContentView.center;
+            calContentPt.y-=h;
+            
+            CGPoint calMenuPt=self.calendarMenuView.center;
+            calMenuPt.y-=h;
+            
+            CGPoint goDownPt=self.goDown.center;
+            goDownPt.y-=h;
+            
+            CGPoint digitalClockPoint=self.digitalClock.center;
+            digitalClockPoint.y-=h;
+            
+            CGPoint repsPoint=self.reps.center;
+            repsPoint.y-=h;
+            
+            CGPoint weightsPoint=self.weights.center;
+            weightsPoint.y-=h;
+            
+            CGPoint exercisePoint=self.exercise.center;
+            exercisePoint.y-=h;
+            
+            CGPoint selectedExercisePoint=self.selectedExercise.center;
+            selectedExercisePoint.y-=h;
+            
+            [UIView animateWithDuration:0.5
+                                  delay:0
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{
-                                 self.digitalClock.alpha=1;
+                                 self.calendarContentView.center=calContentPt;
+                                 self.calendarMenuView.center=calMenuPt;
+                                 self.goDown.center=goDownPt;
+                                 self.digitalClock.center=digitalClockPoint;
+                                 self.reps.center=repsPoint;
+                                 self.weights.center=weightsPoint;
+                                 self.exercise.center=exercisePoint;
+                                 self.selectedExercise.center=selectedExercisePoint;
                              }
                              completion:^(BOOL finished){
                                  readyForAnimation=YES;
-                                 level=0;
                              }];
+            
+            //move secondary things up after a delay
+            
+            CGPoint repVPoint=self.repValue.center;
+            repVPoint.y-=h;
+            
+            CGPoint scrollLogPt=self.scrollLog.center;
+            scrollLogPt.y-=h;
+            
+            CGPoint weightVPoint=self.weightValue.center;
+            weightVPoint.y-=h;
+            
+            CGPoint exerciseColPoint=self.exerciseCollection.center;
+            exerciseColPoint.y-=h;
+            
+            [UIView animateWithDuration:0.5
+                                  delay:0.2
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{
+                                 self.repValue.center=repVPoint;
+                                 self.weightValue.center=weightVPoint;
+                                 self.exerciseCollection.center=exerciseColPoint;
+                                 self.scrollLog.center=scrollLogPt;
+                                 
+                             }
+                             completion:^(BOOL finished){
+                                 
+                                 readyForAnimation=NO;
+                                 
+                                 [self insertEntry];
+                                 //reset everything back to where it was
+                                 self.calendarContentView.frame=CGRectMake(0, h/10-h, w, h/3);
+                                 self.calendarMenuView.frame=CGRectMake(0, 0-h, w, h/10);
+                                 self.goDown.frame=CGRectMake(w/2-w/10, -h/10, w/5, h/10);
+                                 self.digitalClock.center=CGPointMake(self.digitalClock.center.x,h/2-30);
+                                 self.reps.center=CGPointMake(self.reps.center.x,h/6+h-30);
+                                 self.repValue.frame=CGRectMake(0,h/4+h,w,3*h/4);
+                                 self.weights.center=CGPointMake(self.weights.center.x,h/6+2*h-30);
+                                 self.weightValue.frame=CGRectMake(0,h/4+2*h,w,3*h/4);
+                                 self.exercise.center=CGPointMake(self.exercise.center.x,h/6+3*h-30);
+                                 self.exerciseCollection.frame=CGRectMake(0, h/2+3*h, w, h/2);
+                                 self.selectedExercise.frame=CGRectMake(w/2-w/8, h/4+3*h, w/4, w/4);
+                                 self.scrollLog.frame=CGRectMake(w/25, 13*h/30-h, w-2*w/25,3*h/7);
+                                 
+                                 self.digitalClock.alpha=0;
+                                 [UIView animateWithDuration:1.0
+                                                       delay:0.4
+                                                     options:UIViewAnimationOptionCurveEaseOut
+                                                  animations:^{
+                                                      self.digitalClock.alpha=1;
+                                                  }
+                                                  completion:^(BOOL finished){
+                                                      readyForAnimation=YES;
+                                                      level=0;
+                                                  }];
+                             }];
+            
             
         }
     }
@@ -598,6 +673,7 @@
     if (![delegate.managedObjectContext save:&error]) {
         NSLog(@"Failed to save - error: %@", [error localizedDescription]);
     }
+    [_scrollLog reloadData];
 }
 
 -(Day*)getToday{
