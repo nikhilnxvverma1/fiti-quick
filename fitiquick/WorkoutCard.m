@@ -49,6 +49,7 @@
     [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     UILabel *name=[[UILabel alloc] initWithFrame:CGRectMake(25, 3, self.frame.size.width, 20)];
     name.text=workout.exercise.name;
+    name.textColor=[UIColor whiteColor];
     [self addSubview:name];
     float y=25;
     float dy=20;
@@ -56,6 +57,7 @@
         UILabel *setInfo=[[UILabel alloc] initWithFrame:CGRectMake(25, y, self.frame.size.width, 20)];
         setInfo.text=[NSString stringWithFormat:@"%@ reps @ %@ kgs",set.reps,set.weight];
         [self addSubview:setInfo];
+        setInfo.textColor=[UIColor whiteColor];
         y+=dy;
     }
     

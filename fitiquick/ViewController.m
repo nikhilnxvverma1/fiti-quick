@@ -24,6 +24,7 @@
 @property Day *selectedDay;
 @property Day *today;
 @property NSDate *dateSelected;
+@property UIFont *headerFont;
 @end
 
 @implementation ViewController
@@ -34,6 +35,7 @@
 @synthesize today;
 @synthesize dateSelected;
 @synthesize selectedDay;
+@synthesize headerFont;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +44,7 @@
     [self updateTime];
     readyForAnimation=YES;
     level=0;
+    headerFont=[UIFont fontWithName:@"Helvetica" size:60];
 }
 
 -(void)makeViews{
@@ -53,6 +56,8 @@
     _calendarContentView=[[JTHorizontalCalendarView alloc] initWithFrame:CGRectMake(0, h/10-h, w, h/3)];
     [self.view addSubview:_calendarContentView];
     _calendarMenuView=[[JTCalendarMenuView alloc] initWithFrame:CGRectMake(0, 0-h, w, h/10)];
+//    _calendarMenuView.tintColor=[UIColor redColor];
+    _calendarMenuView.backgroundColor=[Util r:215 g:217 b:224];
     [self.view addSubview:_calendarMenuView];
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
@@ -73,15 +78,20 @@
     [_scrollLog setContentOffset:CGPointMake(0, 44) animated:YES];
     
     self.goDown=[[UIButton alloc] initWithFrame:CGRectMake(w/2-w/10, -h/10, w/5, h/10)];
-    [self.goDown setTitle:@"Down" forState:UIControlStateNormal];
+//    [self.goDown setTitle:@"Down" forState:UIControlStateNormal];
+    [self.goDown setImage:[UIImage imageNamed:@"down.png"] forState:UIControlStateNormal];
+    self.goDown.backgroundColor=[Util r:85 g:149 b:105];
     [self.goDown addTarget:self action:@selector(moveItemsUp) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.goDown];
     
     
     //digital clock
-    _digitalClock=[[UILabel alloc] initWithFrame:CGRectMake(0, h/2, w, 30)];
+    _digitalClock=[[UILabel alloc] initWithFrame:CGRectMake(0, h/2, w, 40)];
     _digitalClock.textAlignment=NSTextAlignmentCenter;
     _digitalClock.textColor=[Util r:85 g:149 b:105];
+    _digitalClock.adjustsFontSizeToFitWidth=YES;
+    _digitalClock.font=headerFont;
+//    _digitalClock.adjustsFontSizeToFitWidth=NO;
     [self.view addSubview:_digitalClock];
     
     //reps
@@ -96,6 +106,8 @@
     _repValue.delegate=self;
     _repValue.dataSource=self;
     _repValue.interitemSpacing=20;
+    _repValue.textColor=[UIColor whiteColor];
+    _repValue.highlightedTextColor=[Util r:85 g:149 b:105];
     [self.view addSubview:_repValue];
     [_repValue reloadData];
     
@@ -110,6 +122,8 @@
     _weightValue.delegate=self;
     _weightValue.dataSource=self;
     _weightValue.interitemSpacing=20;
+    _weightValue.textColor=[UIColor whiteColor];
+    _weightValue.highlightedTextColor=[Util r:85 g:149 b:105];
     [self.view addSubview:_weightValue];
     [_weightValue reloadData];
     
@@ -282,15 +296,15 @@
     // Selected date
     else if(dateSelected && [_calendarManager.dateHelper date:dateSelected isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
-        dayView.circleView.backgroundColor = [UIColor redColor];
+        dayView.circleView.backgroundColor = [Util r:85 g:149 b:105];
         dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
     }
     // Another day of the current month
     else{
         dayView.circleView.hidden = YES;
-        dayView.dotView.backgroundColor = [UIColor redColor];
-        dayView.textLabel.textColor = [UIColor blackColor];
+        dayView.dotView.backgroundColor = [Util r:85 g:149 b:105];
+        dayView.textLabel.textColor = [UIColor whiteColor];
     }
     
     // Your method to test if a date have an event for example
