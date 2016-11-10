@@ -316,7 +316,7 @@
     // Another day of the current month
     else{
         dayView.circleView.hidden = YES;
-        dayView.dotView.backgroundColor = [Util r:85 g:149 b:105];
+        dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
     }
     
@@ -649,8 +649,11 @@
     
     if(today==nil){//||![today.date isEqualToDate:[NSDate date]]){//the second case is for 11:59 pm
         today = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
+        
                                               inManagedObjectContext:delegate.managedObjectContext];
-        [today setDate:[NSDate date]];
+        NSDate *date=[NSDate date];
+//        date=[date dateByAddingTimeInterval:24*60*60*3];
+        [today setDate:date];
         
     }
     
@@ -680,6 +683,7 @@
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     NSDate *date=[NSDate date];
+//    date=[date dateByAddingTimeInterval:24*60*60*3];
     
     NSDate *startDate=[Util dateFloor:date];
     
